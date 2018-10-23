@@ -12,7 +12,8 @@ To activate the virtual Vpy34:
   ------------------------------------------------------------------------------
   P1. 
 
-  P2. 
+  P2. To run:(need matplotlib.pyplot) 
+      python part2.py 15
 
   P3.
 

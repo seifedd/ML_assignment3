@@ -42,9 +42,9 @@ class processing:
         return features,output
 
 
-obj=processing("pa2_train")
-features,output=obj.open_csv()
-print(features,"\n")
-print(len(output))
+# obj=processing("pa2_train")
+# features,output=obj.open_csv()
+# print(features,"\n")
+# print(len(output))
 
 
