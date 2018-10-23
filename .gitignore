@@ -1,0 +1,6 @@
+*.pyc
+*.swp
+_tmp
+
+*.csv
+.idea/
