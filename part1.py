@@ -26,29 +26,38 @@ class Perceptron:
         #valid X2,Y2
         obj2 = processing("pa2_valid")
         X2, Y2 = obj2.open_csv()
+        #test X3
+        obj3=processing("pa2_test_no_label")
+        X3=obj3.open_csv_for_test()
         while iter<iters:
             acc1_c=0
             for i,X_i in enumerate(X):
                 ut=np.sign(np.dot(np.transpose(w),X_i))
                 if Y[i]*ut<=0:
-                    if s+c>0:
-                        wb=(s*wb+c*w)/(s+c)
-                    s=s+c
                     w=w+np.dot(Y[i],X_i)
-                    c=0
+
                 else:
                     acc1_c=acc1_c+1
-                    c=c+1
+                    #c=c+1
             acc1.append(acc1_c)
+
             acc2_c=0
             for i,X2_i in enumerate(X2):
-                ut=np.sign(np.dot(np.transpose(wb),X2_i))
+                ut=np.sign(np.dot(np.transpose(w),X2_i))
                 if Y2[i]*ut>0:
                     acc2_c=acc2_c+1
             acc2.append(acc2_c)
             iter=iter+1
-        if c>0:
-            wb=(s*wb+c*w)/(s+c)
+
+            #CSV file prediction
+            Y3_hat = np.sign(np.dot(X3,np.transpose(w)))
+            print("predicted Y3:\n",Y3_hat)
+
+
+
+
+
+
 
 
         print("Accuracy:\n","Training acc:")
@@ -58,8 +67,8 @@ class Perceptron:
 
         #PLOT
 
-        plt.plot(np.divide(acc1,Y.shape[0]), label="iters=" + str(iters) + "-train")
-        plt.plot(np.divide(acc2,Y2.shape[0]), label="iters=" + str(iters) + "-valid")
+        # plt.plot(np.divide(acc1,Y.shape[0]), label="iters=" + str(iters) + "-train")
+        # plt.plot(np.divide(acc2,Y2.shape[0]), label="iters=" + str(iters) + "-valid")
         plt.title(" train and validation accuracies versus the iteration number ")
         plt.xlabel("iterations")
         plt.ylabel("Acc")

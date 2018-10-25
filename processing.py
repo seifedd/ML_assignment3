@@ -41,6 +41,16 @@ class processing:
 
         return features,output
 
+    def open_csv_for_test(self):
+        f = open(self.file + ".csv", 'r')
+        reader = csv.reader(f)
+        features = []
+        for i,row in enumerate(reader):
+            features.append([float(x) for x in row[0:]])
+        features=numpy.array(features)
+        features = numpy.insert(features, 0, 1.0, axis=1)
+        return features
+
 
 # obj=processing("pa2_train")
 # features,output=obj.open_csv()
