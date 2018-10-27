@@ -37,10 +37,16 @@ class Perceptron:
                     w=w+np.dot(Y[i],X_i)
                     c=0
                 else:
-                    acc1_c=acc1_c+1
+                    #acc1_c=acc1_c+1
                     c=c+1
+
+            for i,X_i in enumerate(X):
+                ut=np.sign(np.dot(np.transpose(wb),X_i))
+                if Y[i]*ut>0:
+                    acc1_c = acc1_c + 1
             acc1.append(acc1_c)
             acc2_c=0
+
             for i,X2_i in enumerate(X2):
                 ut=np.sign(np.dot(np.transpose(wb),X2_i))
                 if Y2[i]*ut>0:
@@ -63,6 +69,7 @@ class Perceptron:
         plt.title(" train and validation accuracies versus the iteration number ")
         plt.xlabel("iterations")
         plt.ylabel("Acc")
+        plt.legend()
         plt.show()
 
 

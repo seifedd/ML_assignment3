@@ -36,9 +36,12 @@ class Perceptron:
                 if Y[i]*ut<=0:
                     w=w+np.dot(Y[i],X_i)
 
-                else:
-                    acc1_c=acc1_c+1
-                    #c=c+1
+
+            for i,X_i in enumerate(X):
+                ut = np.sign(np.dot(np.transpose(w), X_i))
+                if Y[i] * ut >0:
+                    acc1_c = acc1_c + 1
+
             acc1.append(acc1_c)
 
             acc2_c=0
@@ -67,8 +70,8 @@ class Perceptron:
 
         #PLOT
 
-        # plt.plot(np.divide(acc1,Y.shape[0]), label="iters=" + str(iters) + "-train")
-        # plt.plot(np.divide(acc2,Y2.shape[0]), label="iters=" + str(iters) + "-valid")
+        plt.plot(np.divide(acc1,Y.shape[0]), label="iters=" + str(iters) + "-train")
+        plt.plot(np.divide(acc2,Y2.shape[0]), label="iters=" + str(iters) + "-valid")
         plt.title(" train and validation accuracies versus the iteration number ")
         plt.xlabel("iterations")
         plt.ylabel("Acc")
